@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skills Course Recommendation</title>
+</head>
+<body>
+
+<h1>Skills Utilization Platform</h1>
+<h2>Course Recommendation System</h2>
+
+<form method="POST">
+<label>Write what you want to learn:</label><br><br>
+
+<textarea
+           name="user_skills"
+           rows="5"
+           cols="60"
+           placeholder="Example: I want to learn cyber security"></textarea>
+
+<br><br>
+
+<button type="submit">Find Courses</button>
+</form>
+
+   {% if results %}
+<h2>Recommended Courses</h2>
+
+       {% for course in results %}
+<div style="border: 1px solid black; padding: 12px; margin: 12px;">
+<h3>{{ course.title }}</h3>
+
+<p>
+<strong>Description:</strong>
+                   {{ course.description }}
+</p>
+
+<p>
+<strong>Related Skills:</strong>
+                   {{ course.skills }}
+</p>
+
+<p>
+<strong>Similarity Score:</strong>
+                   {{ course.score }}
+</p>
+</div>
+       {% endfor %}
+
+   {% elif searched %}
+<h3>No relevant courses found.</h3>
+<p>Please try another skill or topic.</p>
+   {% endif %}
+
+</body>
+</html>
